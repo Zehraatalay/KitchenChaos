@@ -23,5 +23,8 @@ public class MainMenuUI : MonoBehaviour
             Application.Quit();
         });
 
+        //main menu butonuna tiklandiktan sonra play denildiginde yeni oyunun baslamasi icin
+        Time.timeScale = 1f;
+
     }
 }

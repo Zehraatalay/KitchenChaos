@@ -36,7 +36,14 @@ public class GameInput : MonoBehaviour
         OnInteractAlternateAction?.Invoke(this, EventArgs.Empty);
     }
 
-
+    private void OnDestroy()
+    {
+        //object destroy edildiginde missingreferenceexception alýnmasýný önler 
+        playerInputActions.Player.Interact.performed -= Interact_performed;
+        playerInputActions.Player.InteractAlternate.performed -= InteractAlternate_performed;
+        playerInputActions.Player.Pause.performed -= Pause_Performed;
+        playerInputActions.Dispose();//bu nesneyi de bellekten temizliyoruz 
+    }
 
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {

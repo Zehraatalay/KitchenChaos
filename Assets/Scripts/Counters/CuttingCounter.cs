@@ -1,15 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System; 
+using System;
 
 public class CuttingCounter : BaseCounter, IHasProgress
 {
-
-
-
-
-
     public static event EventHandler OnAnyCut;
 
 
@@ -21,6 +16,11 @@ public class CuttingCounter : BaseCounter, IHasProgress
 
     public event EventHandler OnCut;
 
+
+    new public static void ResetStaticData()
+    {
+        OnAnyCut = null;   
+    }
 
     public override void Interact(Player player)
     {

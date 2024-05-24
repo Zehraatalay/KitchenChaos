@@ -8,6 +8,12 @@ public class TrashCounter : BaseCounter
     //bircok tane trash bin'i desteklemek için static olarak event handler oluþturdum
     public static event EventHandler OnAnyObjectTrashed;
 
+    new public static void ResetStaticData()
+    {
+        OnAnyObjectTrashed = null;
+    }
+
+
 
 
     public override void Interact(Player player)
