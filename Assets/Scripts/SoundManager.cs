@@ -5,11 +5,17 @@ using System;
 
 public class SoundManager : MonoBehaviour
 {
+
+    private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
+
     public static SoundManager Instance {  get; private set; }
+
+    private float volume = 1f;//music ve ses efekt butonlarýnýn 
 
     private void Awake()
     {
         Instance = this;    
+        volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
     }
 
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
@@ -24,12 +30,10 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(audioClip, position, volume);
     }
 
-    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
+    private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volumeMultiplier = 1f)
     {
-        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volumeMultiplier * volume);
     }
-
-
 
     private void Start()
     {
@@ -76,7 +80,26 @@ public class SoundManager : MonoBehaviour
         DeliveryCounter deliveryCounter = DeliveryCounter.Instance;
         PlaySound(audioClipRefsSO.deliveryFail, deliveryCounter.transform.position);
     }
+    
+    public void ChangeVolume()
+    {
+        volume += .1f;
 
+        //1.1 volume'ü gectiginde sifirlanir ancak floatlarla islem yaptigimdan daha güvenli olmasý icin 
+        //asagidaki gibi yazmak daha doðrudur
+        //volume = volume % 1.1f;
+        if(volume > 1f)
+        {
+            volume = 0f;
+        }
 
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume); //cahnge yapýldýgýnda bunu koruyoruz
+        PlayerPrefs.Save(); //unity genelde save'liyor ama bir sýkýntý olmasýn diye ekledim yine de 
+    }
+
+    public float GetVolume()
+    {
+        return volume;
+    }
 
 }
