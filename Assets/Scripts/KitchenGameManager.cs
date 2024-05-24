@@ -10,6 +10,7 @@ public class KitchenGameManager : MonoBehaviour
 
 
     public event EventHandler OnStateChanged;
+  
 
     private enum State
     {
@@ -17,6 +18,17 @@ public class KitchenGameManager : MonoBehaviour
         CountdownToStart,
         GamePlaying,
         GameOver,
+    }
+
+    //pause durumu oyun icinde yer aldýgýndan game manager'da kontrol etmek daha mantýklý
+    private void Start()
+    {
+        GameInput.Instance.OnPauseAction += Instance_OnPauseAction;
+    }
+
+    private void Instance_OnPauseAction(object sender, EventArgs e )
+    {
+        PauseGame();
     }
 
     private State state;
@@ -94,5 +106,10 @@ public class KitchenGameManager : MonoBehaviour
         return 1 - (gamePlayingTimer / gamePlayingTimerMax);
     }
 
+    private void PauseGame()
+    {
+        //multiplier so tum delta time'lar sifirlanir
+        Time.timeScale = 0f;
+    }
 
 }

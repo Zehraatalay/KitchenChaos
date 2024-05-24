@@ -23,8 +23,16 @@ public static class Loader
         //hemen diðeri geldiði için ilki gözükmez
         //belirli bir frame kadar bekletmemiz lazým (LoaderCallback scripti bu yüzden)
         SceneManager.LoadScene(Scene.LoadingScene.ToString());
+       
+    }
+
+    public static void LoaderCallback()
+    {
         //asaðýdaki kod parçasýnda int veya string parametre olarak kullanýlabildiðinden
         //tostring metodunu çaðýrýrýz 
         SceneManager.LoadScene(targetScene.ToString());
     }
+
+
+
 }
