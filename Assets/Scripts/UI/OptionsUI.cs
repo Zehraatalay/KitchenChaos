@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class OptionsUI : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI interactAlternateText;
     [SerializeField] private TextMeshProUGUI pauseText;
     [SerializeField] private Transform pressToRebindKeyTransform;
+
+    private Action onCloseButtonAction;
 
     private void Start()
     {
@@ -61,6 +64,7 @@ public class OptionsUI : MonoBehaviour
         closeButton.onClick.AddListener(() =>
         {
             Hide();
+            onCloseButtonAction();
         });
 
         moveUpButton.onClick.AddListener(() => { RebindBinding(GameInput.Binding.Move_Up);  });
@@ -87,9 +91,12 @@ public class OptionsUI : MonoBehaviour
         pauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);
     }
 
-    public void Show()
+    public void Show(Action onCloseButtonAction)
     {
+        this.onCloseButtonAction = onCloseButtonAction;
         gameObject.SetActive(true);
+        //gamepad ile options butonlarini secebilmeyi saglar
+        soundEffectsButton.Select();
     }
 
     private void Hide()
