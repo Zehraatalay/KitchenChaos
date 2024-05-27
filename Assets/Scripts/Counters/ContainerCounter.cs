@@ -24,9 +24,5 @@ public class ContainerCounter : BaseCounter
             OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         }
 
-
-
     }
-
-
 }
