@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+
+    private const string PLAYER_PREFS_BINDINGS = "InputBindings";
     public enum Binding
     {
         Move_Up,
@@ -29,6 +32,12 @@ public class GameInput : MonoBehaviour
     {
         Instance = this;
         playerInputActions = new PlayerInputActions();
+        //initialize ettikten sonra hemen onceki degisiklikleri load ediyoruz
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS))
+        {
+            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
+        }
+
         playerInputActions.Player.Enable();
         playerInputActions.Player.Interact.performed += Interact_performed;
         // Interact_performed fonksiyonunu direkt pass ediyoruz
@@ -98,8 +107,62 @@ public class GameInput : MonoBehaviour
                 return playerInputActions.Player.Move.bindings[3].ToDisplayString();
             case Binding.Move_Right:
                 return playerInputActions.Player.Move.bindings[4].ToDisplayString();
-
+                //ToDisplayString() kullaniciya okunabilir bi format döner (W,A,S,D gibi gibi)
         }
+    }
+
+    public void RebindBinding(Binding binding, Action onActionRebound)
+    {
+        playerInputActions.Player.Disable();
+        InputAction inputAction;
+        int bindingIndex;
+
+        switch (binding)
+        {
+            default:
+            case Binding.Move_Up:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 1;
+                break;
+            case Binding.Move_Down:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 2;
+                break;
+            case Binding.Move_Left:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 3;
+                break;
+            case Binding.Move_Right:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 4;
+                break;
+            case Binding.Interact:
+                inputAction = playerInputActions.Player.Interact;
+                bindingIndex = 0;
+                break;
+            case Binding.Interact_Alternate:
+                inputAction = playerInputActions.Player.InteractAlternate;
+                bindingIndex = 0;
+                break;
+            case Binding.Pause:
+                inputAction = playerInputActions.Player.Pause;
+                bindingIndex = 0;
+                break;
+        }
+
+        inputAction.PerformInteractiveRebinding(bindingIndex)
+            .OnComplete(callback =>
+            {
+                //Debug.Log(callback.action.bindings[1].path);
+                //Debug.Log(callback.action.bindings[1].overridePath);
+                callback.Dispose();
+                playerInputActions.Player.Enable();
+                onActionRebound();
+                //rebinding degisikliklerini kaydetmek icin rebind yaptiktan sonra kullaniriz 
+                PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+                PlayerPrefs.Save();
+            })
+            .Start();
     }
 
 }
