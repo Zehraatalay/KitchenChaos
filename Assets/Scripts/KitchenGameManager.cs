@@ -17,13 +17,13 @@ public class KitchenGameManager : MonoBehaviour
 
     private enum State
     {
-        WaitingToStart,//multiplayer oyunlarda tüm oyuncularýn baglanmasý lazým
+        WaitingToStart,//multiplayer oyunlarda tï¿½m oyuncularï¿½n baglanmasï¿½ lazï¿½m
         CountdownToStart,
         GamePlaying,
         GameOver,
     }
 
-    //pause durumu oyun icinde yer aldýgýndan game manager'da kontrol etmek daha mantýklý
+    //pause durumu oyun icinde yer aldï¿½gï¿½ndan game manager'da kontrol etmek daha mantï¿½klï¿½
     private void Start()
     {
         GameInput.Instance.OnPauseAction += Instance_OnPauseAction;
@@ -110,8 +110,8 @@ public class KitchenGameManager : MonoBehaviour
 
     public float GetGamePlayingTimerNormalized()
     {
-        //time geriye doðru aktýðý için reverse alýrýz
-        //1 - yaparýz yani
+        //time geriye doï¿½ru aktï¿½ï¿½ï¿½ iï¿½in reverse alï¿½rï¿½z
+        //1 - yaparï¿½z yani
         return 1 - (gamePlayingTimer / gamePlayingTimerMax);
     }
 
