@@ -1,104 +1,91 @@
 # Kitchen Chaos
 
-A Unity-based cooking simulation game focused on gameplay programming, interaction systems, object management, and event-driven architecture.
+A Unity-based cooking simulation game developed as a hands-on learning project by following Code Monkey's Kitchen Chaos tutorial.
 
-This project was developed to improve gameplay system design, clean code organization, and modular game architecture while implementing a complete cooking workflow with interactive kitchen objects.
+The project focuses on gameplay programming, object-oriented design, event-driven communication, and modular game systems using Unity and C#.
 
----
+## About the Project
+
+Kitchen Chaos is a cooking simulation game where players prepare and deliver food orders within a limited time.
+
+The project was developed to practice Unity game development and gain hands-on experience implementing interconnected gameplay systems.
 
 ## Features
 
-### Gameplay Systems
-
-- Player movement and interaction system
+### Gameplay
+- Player movement and interaction
 - Object pickup and drop mechanics
-- Cutting and cooking systems
-- Recipe validation logic
-- Plate assembly system
-- Delivery manager
-- Order generation system
-- Countdown and game state management
+- Ingredient cutting and cooking
+- Plate assembly
+- Recipe validation
+- Order generation and delivery
+- Countdown timer and game state management
 
-### UI Systems
-
+### User Interface
 - Dynamic order list
-- Progress bars
+- Cooking and cutting progress bars
 - Timer interface
 - Delivery notifications
 - Game over screen
-
-### Architecture
-
-- Event-driven communication
-- Singleton managers
-- Scriptable Objects for recipes and kitchen objects
-- Modular interaction system
-- State-based gameplay flow
-
----
 
 ## Tech Stack
 
 - Unity
 - C#
-- Object-Oriented Programming (OOP)
-- Scriptable Objects
-- Event System
 - Unity Input System
+- Scriptable Objects
+- Object-Oriented Programming
+- Event-Driven Programming
 
----
+## Technical Concepts Practiced
 
-## Core Systems
+### Component-Based Architecture
 
-### Player Controller
+Using Unity components to organize gameplay behaviors and responsibilities.
 
-Handles movement, interactions, and object carrying mechanics while communicating with gameplay systems through events.
+### Event-Driven Communication
 
-### Kitchen Object System
+Using C# events to communicate between gameplay systems and UI components.
 
-Provides reusable object behaviors for ingredients, plates, and processed food items.
+### Scriptable Objects
 
-### Recipe System
+Defining reusable game data, including recipes and kitchen objects.
 
-Uses Scriptable Objects to define recipes and validates player actions during gameplay.
+### State Management
 
-### Delivery System
+Managing gameplay states such as waiting, playing, and game over.
 
-Manages order generation, delivery validation, and scoring logic.
+### Object-Oriented Design
 
----
+Practicing encapsulation, separation of responsibilities, and reusable gameplay logic.
 
-## Programming Concepts
+## Learning Outcomes
 
-This project demonstrates:
+Through this project, I gained practical experience with:
 
-- Clean and modular C# architecture
-- Event-driven programming
-- Component-based Unity development
-- Separation of responsibilities
-- Reusable gameplay systems
-- Data-driven game design using Scriptable Objects
+- Unity gameplay programming
+- C# event handling
+- Component-based software architecture
+- Game state management
+- Data-driven game design
+- Organizing interconnected gameplay systems
 
----
+## Tutorial Attribution
 
-## Future Improvements
+This project was developed by following the **Kitchen Chaos Unity tutorial by Code Monkey**.
 
-- Save & Load System
-- Sound Manager
-- Achievement System
-- Mobile Input Support
-- Difficulty Levels
-- Local Multiplayer Support
-- Performance Optimization
+The original game concept, tutorial structure, and core implementation are based on Code Monkey's educational content.
 
----
+The repository is shared as a learning exercise and demonstration of my Unity and C# practice, not as an independently designed game.
 
-## Preview
+**Original tutorial:** [Code Monkey — Kitchen Chaos](https://unitycodemonkey.com/kitchenchaoscourse.php)
 
-Gameplay screenshots and demonstration videos will be added soon.
+## Project Status
 
----
+Completed tutorial-based learning project.
+
+The game was previously built and tested locally.
 
 ## Author
 
-Developed as a gameplay programming and Unity architecture practice project focusing on scalable game systems and maintainable code.
+Zehra Atalay
